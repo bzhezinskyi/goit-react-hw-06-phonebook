@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { deleteContacts } from 'redux/contactsSlice';
 
 export default function ContactListItem({
   contact: { name, number, id },
   onDeleteContact,
 }) {
+  const dispatch = useDispatch();
+
   return (
     <li>
       {name}:{number}
@@ -11,6 +15,7 @@ export default function ContactListItem({
         type="button"
         onClick={() => {
           onDeleteContact(id);
+          dispatch(deleteContacts(id));
         }}
       >
         Delete
