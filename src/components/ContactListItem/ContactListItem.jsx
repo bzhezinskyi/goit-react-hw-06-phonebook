@@ -1,11 +1,9 @@
+import Notiflix from 'notiflix';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContacts } from 'redux/contactsSlice';
 
-export default function ContactListItem({
-  contact: { name, number, id },
-  onDeleteContact,
-}) {
+export default function ContactListItem({ contact: { name, number, id } }) {
   const dispatch = useDispatch();
 
   return (
@@ -14,8 +12,8 @@ export default function ContactListItem({
       <button
         type="button"
         onClick={() => {
-          onDeleteContact(id);
           dispatch(deleteContacts(id));
+          Notiflix.Notify.success('Deleted from contacts');
         }}
       >
         Delete
@@ -30,5 +28,4 @@ ContactListItem.propTypes = {
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
   }).isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
 };

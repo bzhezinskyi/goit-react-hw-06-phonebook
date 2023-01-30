@@ -1,28 +1,25 @@
-import { useDispatch } from 'react-redux';
-
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 
 import { Form, Label } from './ContactForm.styled';
 import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
-export default function ContactForm({ onSubmitForm, contacts }) {
+export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = event => {
     event.preventDefault();
 
     if (!contacts.find(contact => contact.name.includes(name))) {
-      const contact = { id: nanoid(), name: name, number: number };
       dispatch(addContact({ name: name, number: number }));
 
-      onSubmitForm(contact);
       Notiflix.Notify.success(name + ' added in contacts');
     } else {
       const message = ' is already in contacts';
@@ -76,14 +73,3 @@ export default function ContactForm({ onSubmitForm, contacts }) {
     </Form>
   );
 }
-
-ContactForm.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onSubmitForm: PropTypes.func.isRequired,
-};

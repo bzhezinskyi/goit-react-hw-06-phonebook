@@ -1,6 +1,15 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const contactsInitialState = JSON.parse(localStorage.getItem('Contacts'));
+const contactsInitialState = () => {
+  if (
+    localStorage.getItem('Contacts') &&
+    JSON.parse(localStorage.getItem('Contacts')).length !== 0
+  ) {
+    return JSON.parse(localStorage.getItem('Contacts'));
+  } else {
+    return [];
+  }
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
