@@ -13,10 +13,12 @@ export default function ContactList() {
   );
 
   return (
-    <ul>
-      {visibleContacts.map(contact => (
-        <ContactListItem key={contact.id} contact={contact} />
-      ))}
-    </ul>
+    <div className="container">
+      <ul className="text-start list-group">
+        {visibleContacts.map(contact => (
+          <ContactListItem key={contact.id} contact={contact} />
+        ))}
+      </ul>
+    </div>
   );
 }

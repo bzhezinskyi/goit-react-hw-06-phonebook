@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import Notiflix from 'notiflix';
 
-import { Form, Label } from './ContactForm.styled';
 import { addContact } from 'redux/contactsSlice';
 import { getContacts } from 'redux/selectors';
 
@@ -44,32 +43,40 @@ export default function ContactForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label>
-        <span>Name</span>
-        <input
-          onChange={handleChange}
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </Label>
-      <Label>
-        <span>Number</span>
-        <input
-          onChange={handleChange}
-          value={number}
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </Label>
-      <button type="submit">Add contact</button>
-    </Form>
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <div className=" mb-4  row text-start">
+          <label className="form-label  col">
+            <span className=" ms-2">Name</span>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="text"
+              name="name"
+              value={name}
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+            />
+          </label>
+          <label className="form-label col">
+            <span className=" ms-2">Number</span>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              value={number}
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+            />
+          </label>
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Add contact
+        </button>
+      </form>
+    </div>
   );
 }

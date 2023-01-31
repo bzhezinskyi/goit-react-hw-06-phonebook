@@ -4,11 +4,11 @@ import Filter from './components/Filter/Filter';
 
 export default function App() {
   return (
-    <div>
+    <div className="container text-center">
       <h1>Phonebook</h1>
       <ContactForm />
-
-      <h2>Contacts</h2>
+      <hr />
+      <h2 className="mb-4">Contacts</h2>
       <Filter />
       <ContactList />
     </div>

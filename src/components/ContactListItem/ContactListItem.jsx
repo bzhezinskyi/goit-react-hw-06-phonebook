@@ -7,17 +7,27 @@ export default function ContactListItem({ contact: { name, number, id } }) {
   const dispatch = useDispatch();
 
   return (
-    <li>
-      {name}:{number}
-      <button
-        type="button"
-        onClick={() => {
-          dispatch(deleteContacts(id));
-          Notiflix.Notify.success('Deleted from contacts');
-        }}
-      >
-        Delete
-      </button>
+    <li className="list-group-item">
+      <div className="row align-items-center">
+        <div className="col">
+          <h5 className="mb-0">{name}:</h5>
+        </div>
+        <div className="col">
+          <p className="mb-0">{number}</p>
+        </div>
+        <div className="col-auto ">
+          <button
+            className="btn btn-primary "
+            type="button"
+            onClick={() => {
+              dispatch(deleteContacts(id));
+              Notiflix.Notify.success('Deleted from contacts');
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
     </li>
   );
 }

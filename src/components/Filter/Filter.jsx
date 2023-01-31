@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { queryFilterValue } from 'redux/filterSlise';
 import { getFilter } from 'redux/selectors';
-import { Label } from './Filter.styled';
 
 export default function Filter() {
   const filterValue = useSelector(getFilter);
@@ -12,10 +11,15 @@ export default function Filter() {
   };
 
   return (
-    <Label>
-      <span>Find contacts by name</span>
-
-      <input type="text" value={filterValue} onChange={hendleChangeFiltr} />
-    </Label>
+    <div className="container mb-3 text-start">
+      <span className=" ms-2">Find contacts by name</span>
+      <input
+        className="form-control"
+        type="text"
+        value={filterValue}
+        aria-label="readonly input example"
+        onChange={hendleChangeFiltr}
+      />
+    </div>
   );
 }
